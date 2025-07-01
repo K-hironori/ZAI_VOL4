@@ -35,13 +35,19 @@
 
         /* Header */
         header {
-            background: #fff;
-            padding: 40px 20px;
+            background-image: linear-gradient(rgba(232, 41, 41, 0.8), rgba(232, 41, 41, 0.7)), url('https://github.com/K-hironori/ZAI_VOL4/blob/main/IMG_3199.jpeg?raw=true');
+            background-size: cover;
+            background-position: center;
+            padding: 60px 20px; /* 少し余白を増やす */
             text-align: center;
-            border-bottom: 5px solid #e82929;
+            border-bottom: 5px solid #ffdd00; /* ボーダーをアクセントカラーに */
+            color: #fff; /* 文字色を白に */
         }
+
         header h1 {
-            font-size: 2.5em;
+            color: #fff; /* h1の文字色も白に */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* 文字を読みやすくする影 */
+            font-size: 2.5em; /* 既存のフォントサイズを維持 */
             margin: 0;
             line-height: 1.4em;
         }
@@ -50,7 +56,9 @@
                 font-size: 1.8em;
             }
         }
+
         header .catch-copy {
+            color: #fff;
             font-size: 1.2em;
             margin: 20px 0;
             font-weight: 700;
