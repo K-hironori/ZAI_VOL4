@@ -12,7 +12,8 @@
         body {
             font-family: 'M PLUS Rounded 1c', sans-serif;
             margin: 0;
-            background-color: #f9f9f9;
+            background-color: #f0f0f0; /* 少し色味のある背景に */
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e9e9e9' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M0 0h20v20H0V0zm20 20h20v20H20V20z'/%3E%3C/g%3E%3C/svg%3E");
             color: #333;
             line-height: 1.6em;
         }
@@ -50,6 +51,12 @@
             font-size: 2.5em; /* 既存のフォントサイズを維持 */
             margin: 0;
             line-height: 1.4em;
+            animation: titlePulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
         }
         @media (max-width: 767px) {
             header h1 {
@@ -62,35 +69,92 @@
             font-size: 1.2em;
             margin: 20px 0;
             font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* CTA Button */
         .cta-button {
             display: inline-block;
-            background-color: #34c759; /* accent-color */
+            background: linear-gradient(45deg, #34c759, #2eb84c);
             color: #fff;
             padding: 15px 40px;
             border-radius: 50px;
             font-size: 1.2em;
             font-weight: 700;
-            transition: transform 0.2s ease-in-out;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(52, 199, 89, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
         }
         .cta-button:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(52, 199, 89, 0.4);
+        }
+        .cta-button:hover::before {
+            left: 100%;
         }
 
         /* Sections */
         section {
             padding: 60px 0;
+            position: relative;
         }
         section:nth-child(even) {
             background-color: #fff;
+        }
+        
+        /* セクション間のタイヤ痕装飾 */
+        section:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q25 5 50 10 T100 10 T150 10 T200 10' stroke='%23e82929' stroke-width='3' fill='none' opacity='0.3'/%3E%3Cpath d='M5 15 Q30 10 55 15 T105 15 T155 15 T200 15' stroke='%23e82929' stroke-width='2' fill='none' opacity='0.2'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
         }
         .section-title {
             text-align: center;
             font-size: 2em;
             margin-bottom: 40px;
+            position: relative;
+        }
+        
+        /* セクションの区切り線 */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, #e82929, #34c759, #ffdd00);
+            margin: 15px auto 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         /* Event Overview */
@@ -105,6 +169,19 @@
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* カードのレーシングストライプ */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #e82929, #34c759, #ffdd00);
         }
         .card ul {
             list-style: none;
@@ -141,11 +218,17 @@
             margin: 0;
         }
         .features-list li {
-            background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2334c759"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>') no-repeat left center;
+            background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e82929"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') no-repeat left center;
             background-size: 1.2em;
             padding-left: 2em;
             margin-bottom: 15px;
             font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+        
+        .features-list li:hover {
+            transform: translateX(10px);
+            color: #e82929;
         }
 
         /* Philosophy */
@@ -177,6 +260,12 @@
             outline: none;
             position: relative;
             color: #e82929;
+            background: linear-gradient(90deg, transparent, rgba(232, 41, 41, 0.05), transparent);
+            transition: all 0.3s ease;
+        }
+        .faq-item summary:hover {
+            background: linear-gradient(90deg, rgba(232, 41, 41, 0.1), rgba(232, 41, 41, 0.15), rgba(232, 41, 41, 0.1));
+            transform: translateX(5px);
         }
         .faq-item summary::-webkit-details-marker {
             display: none;
@@ -233,13 +322,35 @@
 
         /* Footer */
         footer {
-            background-color: #333;
+            background: linear-gradient(135deg, #333, #444);
             color: #fff;
             text-align: center;
             padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
         }
+        
+        /* フッターのチョッカーフラッグパターン */
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: repeating-linear-gradient(
+                90deg,
+                #333 0px,
+                #333 20px,
+                #fff 20px,
+                #fff 40px
+            );
+        }
+        
         footer p {
             margin: 5px 0;
+            position: relative;
+            z-index: 1;
         }
 
     </style>
