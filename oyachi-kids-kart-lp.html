@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大矢知キッズカートグランプリ 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            margin: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6em;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h1, h2, h3 {
+            font-weight: 800;
+            color: #e82929; /* main-color */
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            text-decoration: none;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid #e82929;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            line-height: 1.4em;
+        }
+        header .catch-copy {
+            font-size: 1.2em;
+            margin: 20px 0;
+            font-weight: 700;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background-color: #34c759; /* accent-color */
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 700;
+            transition: transform 0.2s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .cta-button:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+        }
+        section:nth-child(even) {
+            background-color: #fff;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+        }
+
+        /* Event Overview */
+        .overview-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: #fff;
+            border: 2px solid #e82929;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .card li {
+            padding-left: 1.5em;
+            text-indent: -1.5em;
+            margin-bottom: 10px;
+        }
+        .card li::before {
+            content: '✓';
+            color: #34c759;
+            font-weight: bold;
+            margin-right: 0.5em;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .features-grid img {
+            border-radius: 15px;
+            width: 100%;
+        }
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .features-list li {
+            background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2334c759"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>') no-repeat left center;
+            background-size: 1.2em;
+            padding-left: 2em;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        /* Philosophy */
+        .philosophy {
+            text-align: center;
+            padding: 40px 20px;
+            background: #fff;
+            border-radius: 15px;
+        }
+        .philosophy h3 {
+            font-size: 1.5em;
+            font-weight: 800;
+        }
+        .philosophy p {
+            font-size: 1.1em;
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .faq-item summary {
+            font-weight: 700;
+            padding: 15px;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+            color: #e82929;
+        }
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+        .faq-item summary::after {
+            content: '+';
+            position: absolute;
+            right: 15px;
+            font-size: 1.5em;
+            color: #34c759;
+            transition: transform 0.2s;
+        }
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            padding: 0 15px 15px;
+            line-height: 1.6em;
+        }
+
+        /* How to Join */
+        .join-section {
+            text-align: center;
+        }
+        .join-steps {
+            text-align: left;
+            max-width: 500px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+        }
+        .join-steps ol {
+            padding-left: 20px;
+        }
+        .qr-placeholder {
+            width: 180px;
+            height: 180px;
+            background-color: #e0e0e0;
+            border: 2px dashed #aaa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            font-size: 0.9em;
+            color: #777;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .join-note {
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        footer p {
+            margin: 5px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 1) HERO -->
+    <header>
+        <div class="container">
+            <h1>大矢知キッズカート<br>グランプリ 2025 開催！</h1>
+            <p class="catch-copy">ゲームの枠を超えて、笑顔と友情が走り出す！<br>子どもたちによる、本気の 1 対 1 レース</p>
+            <a href="#join" class="cta-button">今すぐ参加する！</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2) EVENT OVERVIEW -->
+        <section id="overview">
+            <div class="container">
+                <h2 class="section-title">イベント概要</h2>
+                <div class="overview-cards">
+                    <div class="card">
+                        <ul>
+                            <li><strong>イベント名:</strong> 大矢知キッズカートグランプリ</li>
+                            <li><strong>開催日:</strong> 〇月〇日（土）13:00〜</li>
+                            <li><strong>会場:</strong> 大矢知コミュニティセンター</li>
+                            <li><strong>対象:</strong> 小学生（1〜6 年生）</li>
+                            <li><strong>参加費:</strong> 初回限定 500 円（2 回目以降 800 円予定）</li>
+                            <li><strong>定員:</strong> 先着 8 名（事前申込制）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3) FEATURES -->
+        <section id="features">
+            <div class="container">
+                <h2 class="section-title">大会の特徴</h2>
+                <div class="features-grid">
+                    <div class="features-image">
+                        <img src="https://via.placeholder.com/600x400.png?text=レース写真" alt="子どもたちがカートでレースしている様子">
+                    </div>
+                    <div class="features-text">
+                        <ul class="features-list">
+                            <li>ニンテンドースイッチ＋カートで本格レース体験！</li>
+                            <li>マリオカート ライブ ホームサーキットを使用</li>
+                            <li>本物のカートをコースで走らせて競う 1 対 1 の真剣勝負！</li>
+                            <li>予選 2 レース制（ポイント＋タイム判定）</li>
+                            <li>準決勝・決勝でチャンピオンを決定！</li>
+                            <li>景品＆参加賞あり</li>
+                            <li>親子で楽しめる交流イベント！</li>
+                            <li>保護者も観戦・応援 OK！</li>
+                            <li>写真撮影 OK！SNS 投稿で広がる輪</li>
+                            <li>地域の親子とつながるチャンス！</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4) PHILOSOPHY -->
+        <section id="philosophy">
+            <div class="container">
+                <div class="philosophy">
+                    <h2 class="section-title">この大会に込めた想い</h2>
+                    <h3>ゲームを「つながり」のきっかけに。</h3>
+                    <p>
+                        ただ勝ち負けを競うのではなく、笑顔と交流が生まれる場所を作りたい。<br>
+                        子どもも大人も一緒に楽しめる、そんなイベントを通じて、<br>
+                        大矢知を “半田で一番楽しい地区” にしたい。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5) FAQ -->
+        <section id="faq">
+            <div class="container">
+                <h2 class="section-title">FAQ</h2>
+                <details class="faq-item">
+                    <summary><strong>Q1:</strong> ゲームが得意じゃなくても参加できますか？</summary>
+                    <div class="faq-answer">
+                        <p><strong>A1:</strong> 大丈夫です！勝ち負けより “楽しむ気持ち” を大切にしています。</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary><strong>Q2:</strong> 幼児のきょうだいを連れて行っても大丈夫ですか？</summary>
+                    <div class="faq-answer">
+                        <p><strong>A2:</strong> 小さなお子さまが遊べるキッズスペースをご用意していますので、付き添いの方も安心してご参加いただけます。</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary><strong>Q3:</strong> 雨天時はどうなりますか？</summary>
+                    <div class="faq-answer">
+                        <p><strong>A3:</strong> 屋内開催なので天候に関係なく実施します。</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary><strong>Q4:</strong> カートや Switch を持っていないと参加できませんか？</summary>
+                    <div class="faq-answer">
+                        <p><strong>A4:</strong> 主催側で機材を準備していますので、手ぶらで OK！</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- 6) HOW TO JOIN -->
+        <section id="join" class="join-section">
+            <div class="container">
+                <h2 class="section-title">参加方法</h2>
+                <div class="join-steps">
+                    <ol>
+                        <li>LINE 公式アカウントを友だち追加</li>
+                        <li>トーク画面の「参加申込」ボタンをタップ</li>
+                        <li>必要事項を入力して送信 → 受付完了！</li>
+                    </ol>
+                    <div class="qr-placeholder">LINE友だち追加<br>QRコード</div>
+                    <p class="join-note">※定員になり次第締切</p>
+                </div>
+                <a href="#join" class="cta-button">LINEで参加申込する</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 7) FOOTER -->
+    <footer>
+        <div class="container">
+            <p>主催: OYACHI DREAM BASE　代表: 安斉 剛</p>
+            <p>お問い合わせ: LINE 公式アカウントより</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+### END
