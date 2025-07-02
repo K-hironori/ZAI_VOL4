@@ -403,28 +403,6 @@
             100% { transform: scale(0); opacity: 0; }
         }
 
-        #kart-racer {
-            display: none; /* 初期状態は非表示 */
-            position: absolute;
-            width: 150px;
-            max-width: 50%;
-            z-index: 10000;
-        }
-        
-        /* カートが奥から手前に迫ってくるアニメーション */
-        @keyframes kart-zoom-in {
-            0% {
-                transform: translateY(200%) scale(0.1);
-                opacity: 0;
-            }
-            30% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-800%) scale(3);
-                opacity: 0;
-            }
-        }
         
         /* オープニング全体がフェードアウトするアニメーション */
         @keyframes fade-out-opening {
@@ -448,7 +426,6 @@
 
     <div id="opening-animation">
         <div id="countdown"></div>
-        <img id="kart-racer" src="https://github.com/K-hironori/ZAI_VOL4/blob/main/2025-07-02%209.56%E3%81%AE%E7%94%BB%E5%83%8F.jpeg?raw=true" alt="レーシングカート">
     </div>
 
     <div class="main-content">
@@ -578,7 +555,6 @@
             const body = document.body;
             const opening = document.getElementById('opening-animation');
             const countdownEl = document.getElementById('countdown');
-            const kart = document.getElementById('kart-racer');
             const mainContent = document.querySelector('.main-content');
 
             // --- 1. オープニングアニメーション ---
@@ -606,12 +582,7 @@
                         }, step.duration);
 
                     } else {
-                        // カウントダウン終了
-                        countdownEl.style.display = 'none';
-                        kart.style.display = 'block';
-                        kart.style.animation = 'kart-zoom-in 1.5s ease-in forwards';
-
-                        // アニメーション終了後にオープニング画面を消す
+                        // カウントダウン終了後すぐにオープニング画面を消す
                         setTimeout(() => {
                             opening.style.animation = 'fade-out-opening 0.5s ease-out forwards';
                             // メインコンテンツを表示
@@ -620,7 +591,7 @@
                             body.style.overflow = 'auto';
                             // スクロールアニメーションを初期化
                             setupScrollAnimation(); 
-                        }, 1000); // カートアニメーションの途中でフェードアウト開始
+                        }, 500); // GO!表示後少し待ってからフェードアウト
                     }
                 }
                 showNextStep();
