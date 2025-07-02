@@ -313,6 +313,20 @@
         .join-steps ol {
             padding-left: 20px;
         }
+        .qr-placeholder {
+            width: 180px;
+            height: 180px;
+            background-color: #e0e0e0;
+            border: 2px dashed #aaa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            font-size: 0.9em;
+            color: #777;
+            text-align: center;
+            border-radius: 10px;
+        }
         .join-note {
             font-size: 0.9em;
             color: #555;
@@ -513,14 +527,25 @@
 
         <section id="join" class="join-section scroll-reveal">
             <div class="container">
-                <h2 class="section-title">参加方法</h2>
+                <h2 class="section-title">🏆 かんたんLINE申込 🏁</h2>
                 <div class="join-steps">
-                    <ol>
-                        <li>LINE 公式アカウントを友だち追加</li>
-                        <li>トーク画面の「参加申込」ボタンをタップ</li>
-                        <li>必要事項を入力して送信 → 受付完了！</li>
-                    </ol>
-                    <p class="join-note">※定員になり次第締切</p>
+                    <p style="text-align: center; font-weight: bold; font-size: 1.2em;">グランプリへのエントリーはとっても簡単！</p>
+                    <p style="text-align: center;">LINEでメッセージを送って、レースに参加しよう！</p>
+                    
+                    <div class="qr-placeholder">LINE友だち追加<br>QRコード</div>
+                    
+                    <p style="text-align: center; margin-top: 20px;">
+                        ☝️ まずは友だち追加！<br>
+                        次に、トーク画面で下の２つを教えてね！
+                    </p>
+                    <ul style="list-style: none; padding-left: 0; text-align: center;">
+                        <li><strong>① お子さまのお名前（フルネーム）</strong></li>
+                        <li><strong>② 学年</strong></li>
+                    </ul>
+
+                    <p class="join-note" style="text-align: center;"><strong>（こんな風に送ってね！）</strong><br>「安斉つよし、小学1年生です。参加します！」</p>
+
+                    <p class="join-note">※定員になり次第締切となります。お早めに！</p>
                 </div>
                 <a href="#join" class="cta-button">LINEで参加申込する</a>
             </div>
