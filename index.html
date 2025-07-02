@@ -52,6 +52,25 @@
             color: #fff; /* 文字色を白に */
         }
 
+        /* 残り参加人数表示 */
+        .remaining-count {
+            display: inline-block;
+            background-color: #ffdd00;
+            color: #333;
+            font-weight: bold;
+            font-size: 1.3em;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
         header h1 {
             color: #fff; /* h1の文字色も白に */
             text-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* 文字を読みやすくする影 */
@@ -419,6 +438,7 @@
             <div class="container">
                 <h1>大矢知キッズカート<br>グランプリ 2025<br>開催！</h1>
                 <p class="catch-copy">ゲームの枠を超えて、笑顔と友情が走り出す！<br>子どもたちによる、本気の 1 対 1 レース</p>
+                <div class="remaining-count">【残り8名】</div>
                 <a href="#join" class="cta-button">今すぐ参加する！</a>
             </div>
         </header>
