@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大矢知キッズカートグランプリ 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            margin: 0;
+            background-color: #f0f0f0; /* 少し色味のある背景に */
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e9e9e9' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M0 0h20v20H0V0zm20 20h20v20H20V20z'/%3E%3C/g%3E%3C/svg%3E");
+            color: #333;
+            line-height: 1.6em;
+        }
+        
+        /* メインコンテンツの表示制御 */
+        .main-content {
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+        .main-content.loaded {
+            opacity: 1;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h1, h2, h3 {
+            font-weight: 800;
+            color: #e82929; /* main-color */
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            text-decoration: none;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #e82929, #ff4757);
+            padding: 60px 20px; /* 少し余白を増やす */
+            text-align: center;
+            border-bottom: 5px solid #ffdd00; /* ボーダーをアクセントカラーに */
+            color: #fff; /* 文字色を白に */
+        }
+
+        header h1 {
+            color: #fff; /* h1の文字色も白に */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* 文字を読みやすくする影 */
+            font-size: 2.5em; /* 既存のフォントサイズを維持 */
+            margin: 0;
+            line-height: 1.4em;
+            animation: titlePulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        @media (max-width: 767px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+        }
+
+        header .catch-copy {
+            color: #fff;
+            font-size: 1.2em;
+            margin: 20px 0;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #34c759, #2eb84c);
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 700;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(52, 199, 89, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
+        }
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(52, 199, 89, 0.4);
+        }
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+            position: relative;
+        }
+        section:nth-child(even) {
+            background-color: #fff;
+        }
+        
+        /* セクション間のタイヤ痕装飾 */
+        section:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q25 5 50 10 T100 10 T150 10 T200 10' stroke='%23e82929' stroke-width='3' fill='none' opacity='0.3'/%3E%3Cpath d='M5 15 Q30 10 55 15 T105 15 T155 15 T200 15' stroke='%23e82929' stroke-width='2' fill='none' opacity='0.2'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        /* セクションの区切り線 */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, #e82929, #34c759, #ffdd00);
+            margin: 15px auto 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Event Overview */
+        .overview-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: #fff;
+            border: 2px solid #e82929;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        /* カードのレーシングストライプ */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #e82929, #34c759, #ffdd00);
+        }
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .card li {
+            padding-left: 1.5em;
+            text-indent: -1.5em;
+            margin-bottom: 10px;
+        }
+        .card li::before {
+            content: '✓';
+            color: #34c759;
+            font-weight: bold;
+            margin-right: 0.5em;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .features-grid img {
+            border-radius: 15px;
+            width: 100%;
+        }
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .features-list li {
+            background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e82929"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') no-repeat left center;
+            background-size: 1.2em;
+            padding-left: 2em;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+        
+        .features-list li:hover {
+            transform: translateX(10px);
+            color: #e82929;
+        }
+
+        /* Philosophy */
+        .philosophy {
+            text-align: center;
+            padding: 40px 20px;
+            background: #fff;
+            border-radius: 15px;
+        }
+        .philosophy h3 {
+            font-size: 1.5em;
+            font-weight: 800;
+        }
+        .philosophy p {
+            font-size: 1.1em;
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .faq-item summary {
+            font-weight: 700;
+            padding: 15px;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+            color: #e82929;
+            background: linear-gradient(90deg, transparent, rgba(232, 41, 41, 0.05), transparent);
+            transition: all 0.3s ease;
+        }
+        .faq-item summary:hover {
+            background: linear-gradient(90deg, rgba(232, 41, 41, 0.1), rgba(232, 41, 41, 0.15), rgba(232, 41, 41, 0.1));
+            transform: translateX(5px);
+        }
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+        .faq-item summary::after {
+            content: '+';
+            position: absolute;
+            right: 15px;
+            font-size: 1.5em;
+            color: #34c759;
+            transition: transform 0.2s;
+        }
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            padding: 0 15px 15px;
+            line-height: 1.6em;
+        }
+
+        /* How to Join */
+        .join-section {
+            text-align: center;
+        }
+        .join-steps {
+            text-align: left;
+            max-width: 500px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+        }
+        .join-steps ol {
+            padding-left: 20px;
+        }
+        .join-note {
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #333, #444);
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* フッターのチョッカーフラッグパターン */
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: repeating-linear-gradient(
+                90deg,
+                #333 0px,
+                #333 20px,
+                #fff 20px,
+                #fff 40px
+            );
+        }
+        
+        footer p {
+            margin: 5px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- ✨ アニメーション用CSS ✨ --- */
+
+        /* 1) オープニングアニメーション */
+        #opening-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #countdown {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-weight: 800;
+            color: #ffdd00;
+            text-shadow: 0 0 10px #ffdd00, 0 0 20px #e82929, 0 0 30px #e82929;
+            transform: scale(0);
+            opacity: 0;
+            font-size: 25vmin; /* 画面サイズに応じて調整 */
+        }
+        
+        /* カウントダウンの数字がズームイン・アウトするアニメーション */
+        @keyframes countdown-pulse {
+            0%   { transform: scale(0); opacity: 0; }
+            15%  { transform: scale(1.3); opacity: 1; }
+            85%  { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0; }
+        }
+
+        
+        /* オープニング全体がフェードアウトするアニメーション */
+        @keyframes fade-out-opening {
+            from { opacity: 1; }
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        /* 2) スクロール連動アニメーション */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="opening-animation">
+        <div id="countdown"></div>
+    </div>
+
+    <div class="main-content">
+        <header class="scroll-reveal">
+            <div class="container">
+                <h1>大矢知キッズカート<br>グランプリ 2025<br>開催！</h1>
+                <p class="catch-copy">ゲームの枠を超えて、笑顔と友情が走り出す！<br>子どもたちによる、本気の 1 対 1 レース</p>
+                <a href="#join" class="cta-button">今すぐ参加する！</a>
+            </div>
+        </header>
+
+        <main>
+        <section id="overview" class="scroll-reveal">
+            <div class="container">
+                <h2 class="section-title">イベント概要</h2>
+                <div class="overview-cards">
+                    <div class="card">
+                        <ul>
+                            <li><strong>イベント名:</strong> 大矢知キッズカートグランプリ</li>
+                            <li><strong>開催日:</strong> 〇月〇日（土）13:00〜</li>
+                            <li><strong>会場:</strong> 大矢知コミュニティセンター</li>
+                            <li><strong>対象:</strong> 小学生（1〜6 年生）</li>
+                            <li><strong>参加費:</strong> 初回限定 500 円（2 回目以降 800 円予定）</li>
+                            <li><strong>定員:</strong> 先着 8 名（事前申込制）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="scroll-reveal">
+            <div class="container">
+                <h2 class="section-title">大会の特徴</h2>
+                <div class="features-image" style="margin-bottom: 30px;">
+                    <img src="https://github.com/K-hironori/ZAI_VOL4/blob/main/IMG_3199.jpeg?raw=true" alt="子どもたちがカートでレースしている様子">
+                </div>
+                <div class="features-grid">
+                    <div class="features-text">
+                        <ul class="features-list">
+                            <li>ニンテンドースイッチ＋カートで本格レース体験！</li>
+                            <li>マリオカート ライブ ホームサーキットを使用</li>
+                            <li>本物のカートをコースで走らせて競う 1 対 1 の真剣勝負！</li>
+                            <li>予選 2 レース制（ポイント＋タイム判定）</li>
+                            <li>準決勝・決勝でチャンピオンを決定！</li>
+                            <li>景品＆参加賞あり</li>
+                            <li>親子で楽しめる交流イベント！</li>
+                            <li>保護者も観戦・応援 OK！</li>
+                            <li>写真撮影 OK！SNS 投稿で広がる輪</li>
+                            <li>地域の親子とつながるチャンス！</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="philosophy" class="scroll-reveal">
+            <div class="container">
+                <div class="philosophy">
+                    <h2 class="section-title">この大会に込めた想い</h2>
+                    <h3>ゲームを「つながり」のきっかけに。</h3>
+                    <p>
+                        ただ勝ち負けを競うのではなく、笑顔と交流が生まれる場所を作りたい。<br>
+                        子どもも大人も一緒に楽しめる、そんなイベントを通じて、<br>
+                        大矢知を "半田で一番楽しい地区" にしたい。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="scroll-reveal">
+            <div class="container">
+                <h2 class="section-title">FAQ</h2>
+                <details class="faq-item">
+                    <summary><strong>Q1:</strong> ゲームが得意じゃなくても参加できますか？</summary>
+                    <div class="faq-answer">
+                        <p><strong>A1:</strong> 大丈夫です！勝ち負けより "楽しむ気持ち" を大切にしています。</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary><strong>Q2:</strong> 幼児のきょうだいを連れて行っても大丈夫ですか？</summary>
+                    <div class="faq-answer">
+                        <p><strong>A2:</strong> 小さなお子さまが遊べるキッズスペースをご用意していますので、付き添いの方も安心してご参加いただけます。</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary><strong>Q3:</strong> 雨天時はどうなりますか？</summary>
+                    <div class="faq-answer">
+                        <p><strong>A3:</strong> 屋内開催なので天候に関係なく実施します。</p>
+                    </div>
+                </details>
+                <details class="faq-item">
+                    <summary><strong>Q4:</strong> カートや Switch を持っていないと参加できませんか？</summary>
+                    <div class="faq-answer">
+                        <p><strong>A4:</strong> 主催側で機材を準備していますので、手ぶらで OK！</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <section id="join" class="join-section scroll-reveal">
+            <div class="container">
+                <h2 class="section-title">🏆 かんたんLINE申込 🏁</h2>
+                <div class="join-steps">
+                    <p style="text-align: center; font-weight: bold; font-size: 1.2em;">グランプリへのエントリーはとっても簡単！</p>
+                    <p style="text-align: center;">LINEでメッセージを送って、レースに参加しよう！</p>
+
+                    <p class="join-note">※定員になり次第締切となります。お早めに！</p>
+                </div>
+                <a href="#join" class="cta-button">LINEで参加申込する</a>
+            </div>
+        </section>
+        </main>
+
+        <footer class="scroll-reveal">
+            <div class="container">
+                <p>主催: OYACHI DREAM BASE　代表: 安斉 剛</p>
+                <p>お問い合わせ: LINE 公式アカウントより</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const opening = document.getElementById('opening-animation');
+            const countdownEl = document.getElementById('countdown');
+            const mainContent = document.querySelector('.main-content');
+
+            // --- 1. オープニングアニメーション ---
+            function startOpeningAnimation() {
+                // スクロールを一時的に禁止
+                body.style.overflow = 'hidden';
+
+                // カウントダウン要素を確実に表示
+                countdownEl.style.display = 'block';
+                countdownEl.style.transform = 'scale(0)';
+                countdownEl.style.opacity = '0';
+
+                const countdownSteps = [
+                    { text: '3', duration: 900 },
+                    { text: '2', duration: 900 },
+                    { text: '1', duration: 900 },
+                    { text: 'GO!', duration: 1200 }
+                ];
+                let currentIndex = 0;
+
+                function showNextStep() {
+                    if (currentIndex < countdownSteps.length) {
+                        const step = countdownSteps[currentIndex];
+                        countdownEl.textContent = step.text;
+                        
+                        // アニメーションをリセットしてから新しいアニメーションを適用
+                        countdownEl.style.animation = 'none';
+                        setTimeout(() => {
+                            countdownEl.style.animation = `countdown-pulse ${step.duration / 1000}s ease-in-out forwards`;
+                        }, 10);
+                        
+                        setTimeout(() => {
+                            currentIndex++;
+                            showNextStep();
+                        }, step.duration);
+
+                    } else {
+                        // カウントダウン終了後すぐにオープニング画面を消す
+                        setTimeout(() => {
+                            opening.style.animation = 'fade-out-opening 0.5s ease-out forwards';
+                            // メインコンテンツを表示
+                            mainContent.classList.add('loaded');
+                            // スクロールを許可
+                            body.style.overflow = 'auto';
+                            // スクロールアニメーションを初期化
+                            setupScrollAnimation(); 
+                        }, 500); // GO!表示後少し待ってからフェードアウト
+                    }
+                }
+                showNextStep();
+            }
+
+            // --- 2. スクロール連動アニメーション ---
+            function setupScrollAnimation() {
+                const targets = document.querySelectorAll('.scroll-reveal');
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            // 一度表示されたら監視を停止する場合は以下のコメントを外す
+                            // observer.unobserve(entry.target); 
+                        } else {
+                            // 画面外に出たらアニメーションをリセットする場合は以下を有効にする
+                             entry.target.classList.remove('visible');
+                        }
+                    });
+                }, {
+                    root: null, // ビューポートを基準にする
+                    rootMargin: '0px',
+                    threshold: 0.1 // 10%見えたらトリガー
+                });
+
+                targets.forEach(target => {
+                    observer.observe(target);
+                });
+            }
+
+            // アニメーションを開始
+            startOpeningAnimation();
+        });
+    </script>
+
+</body>
+</html>
