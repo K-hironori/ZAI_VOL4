@@ -16,6 +16,11 @@
             background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e9e9e9' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M0 0h20v20H0V0zm20 20h20v20H20V20z'/%3E%3C/g%3E%3C/svg%3E");
             color: #333;
             line-height: 1.6em;
+            opacity: 0; /* JSで表示を制御 */
+            transition: opacity 0.5s ease-in;
+        }
+        body.loaded {
+            opacity: 1;
         }
         .container {
             max-width: 800px;
@@ -169,6 +174,11 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             position: relative;
             overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
         
         /* カードのレーシングストライプ */
@@ -351,12 +361,93 @@
             z-index: 1;
         }
 
+        /* --- ✨ アニメーション用CSS ✨ --- */
+
+        /* 1) オープニングアニメーション */
+        #opening-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #countdown {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-weight: 800;
+            color: #ffdd00;
+            text-shadow: 0 0 10px #ffdd00, 0 0 20px #e82929, 0 0 30px #e82929;
+            transform: scale(0);
+            opacity: 0;
+            font-size: 25vmin; /* 画面サイズに応じて調整 */
+        }
+        
+        /* カウントダウンの数字がズームイン・アウトするアニメーション */
+        @keyframes countdown-pulse {
+            0%   { transform: scale(0); opacity: 0; }
+            20%  { transform: scale(1.2); opacity: 1; }
+            80%  { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        #kart-racer {
+            display: none; /* 初期状態は非表示 */
+            position: absolute;
+            width: 150px;
+            max-width: 50%;
+            z-index: 10000;
+        }
+        
+        /* カートが奥から手前に迫ってくるアニメーション */
+        @keyframes kart-zoom-in {
+            0% {
+                transform: translateY(200%) scale(0.1);
+                opacity: 0;
+            }
+            30% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-800%) scale(3);
+                opacity: 0;
+            }
+        }
+        
+        /* オープニング全体がフェードアウトするアニメーション */
+        @keyframes fade-out-opening {
+            from { opacity: 1; }
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        /* 2) スクロール連動アニメーション */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
 
-    <!-- 1) HERO -->
-    <header>
+    <div id="opening-animation">
+        <div id="countdown"></div>
+        <img id="kart-racer" src="https://github.com/K-hironori/ZAI_VOL4/blob/main/2025-07-02%209.56%E3%81%AE%E7%94%BB%E5%83%8F.jpeg?raw=true" alt="レーシングカート">
+    </div>
+
+    <header class="scroll-reveal">
         <div class="container">
             <h1>大矢知キッズカート<br>グランプリ 2025<br>開催！</h1>
             <p class="catch-copy">ゲームの枠を超えて、笑顔と友情が走り出す！<br>子どもたちによる、本気の 1 対 1 レース</p>
@@ -365,8 +456,7 @@
     </header>
 
     <main>
-        <!-- 2) EVENT OVERVIEW -->
-        <section id="overview">
+        <section id="overview" class="scroll-reveal">
             <div class="container">
                 <h2 class="section-title">イベント概要</h2>
                 <div class="overview-cards">
@@ -384,8 +474,7 @@
             </div>
         </section>
 
-        <!-- 3) FEATURES -->
-        <section id="features">
+        <section id="features" class="scroll-reveal">
             <div class="container">
                 <h2 class="section-title">大会の特徴</h2>
                 <div class="features-image" style="margin-bottom: 30px;">
@@ -410,8 +499,7 @@
             </div>
         </section>
 
-        <!-- 4) PHILOSOPHY -->
-        <section id="philosophy">
+        <section id="philosophy" class="scroll-reveal">
             <div class="container">
                 <div class="philosophy">
                     <h2 class="section-title">この大会に込めた想い</h2>
@@ -419,20 +507,19 @@
                     <p>
                         ただ勝ち負けを競うのではなく、笑顔と交流が生まれる場所を作りたい。<br>
                         子どもも大人も一緒に楽しめる、そんなイベントを通じて、<br>
-                        大矢知を “半田で一番楽しい地区” にしたい。
+                        大矢知を "半田で一番楽しい地区" にしたい。
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- 5) FAQ -->
-        <section id="faq">
+        <section id="faq" class="scroll-reveal">
             <div class="container">
                 <h2 class="section-title">FAQ</h2>
                 <details class="faq-item">
                     <summary><strong>Q1:</strong> ゲームが得意じゃなくても参加できますか？</summary>
                     <div class="faq-answer">
-                        <p><strong>A1:</strong> 大丈夫です！勝ち負けより “楽しむ気持ち” を大切にしています。</p>
+                        <p><strong>A1:</strong> 大丈夫です！勝ち負けより "楽しむ気持ち" を大切にしています。</p>
                     </div>
                 </details>
                 <details class="faq-item">
@@ -456,8 +543,7 @@
             </div>
         </section>
 
-        <!-- 6) HOW TO JOIN -->
-        <section id="join" class="join-section">
+        <section id="join" class="join-section scroll-reveal">
             <div class="container">
                 <h2 class="section-title">参加方法</h2>
                 <div class="join-steps">
@@ -474,14 +560,95 @@
         </section>
     </main>
 
-    <!-- 7) FOOTER -->
-    <footer>
+    <footer class="scroll-reveal">
         <div class="container">
             <p>主催: OYACHI DREAM BASE　代表: 安斉 剛</p>
             <p>お問い合わせ: LINE 公式アカウントより</p>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const opening = document.getElementById('opening-animation');
+            const countdownEl = document.getElementById('countdown');
+            const kart = document.getElementById('kart-racer');
+
+            // --- 1. オープニングアニメーション ---
+            function startOpeningAnimation() {
+                // スクロールを一時的に禁止
+                body.style.overflow = 'hidden';
+
+                const countdownSteps = [
+                    { text: '3', duration: 900 },
+                    { text: '2', duration: 900 },
+                    { text: '1', duration: 900 },
+                    { text: 'GO!', duration: 1200 }
+                ];
+                let currentIndex = 0;
+
+                function showNextStep() {
+                    if (currentIndex < countdownSteps.length) {
+                        const step = countdownSteps[currentIndex];
+                        countdownEl.textContent = step.text;
+                        countdownEl.style.animation = `countdown-pulse ${step.duration / 1000}s ease-in-out forwards`;
+                        
+                        setTimeout(() => {
+                            currentIndex++;
+                            showNextStep();
+                        }, step.duration);
+
+                    } else {
+                        // カウントダウン終了
+                        countdownEl.style.display = 'none';
+                        kart.style.display = 'block';
+                        kart.style.animation = 'kart-zoom-in 1.5s ease-in forwards';
+
+                        // アニメーション終了後にオープニング画面を消す
+                        setTimeout(() => {
+                            opening.style.animation = 'fade-out-opening 0.5s ease-out forwards';
+                            // メインコンテンツを表示
+                            body.classList.add('loaded');
+                            // スクロールを許可
+                            body.style.overflow = 'auto';
+                            // スクロールアニメーションを初期化
+                            setupScrollAnimation(); 
+                        }, 1000); // カートアニメーションの途中でフェードアウト開始
+                    }
+                }
+                showNextStep();
+            }
+
+            // --- 2. スクロール連動アニメーション ---
+            function setupScrollAnimation() {
+                const targets = document.querySelectorAll('.scroll-reveal');
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            // 一度表示されたら監視を停止する場合は以下のコメントを外す
+                            // observer.unobserve(entry.target); 
+                        } else {
+                            // 画面外に出たらアニメーションをリセットする場合は以下を有効にする
+                             entry.target.classList.remove('visible');
+                        }
+                    });
+                }, {
+                    root: null, // ビューポートを基準にする
+                    rootMargin: '0px',
+                    threshold: 0.1 // 10%見えたらトリガー
+                });
+
+                targets.forEach(target => {
+                    observer.observe(target);
+                });
+            }
+
+            // アニメーションを開始
+            startOpeningAnimation();
+        });
+    </script>
+
 </body>
 </html>
-### END
