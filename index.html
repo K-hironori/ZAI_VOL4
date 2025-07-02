@@ -54,21 +54,30 @@
 
         /* 残り参加人数表示 */
         .remaining-count {
+            color: #ffdd00;
+            font-weight: 700;
+            font-size: 1.2em;
+            margin: 15px 0;
+            text-shadow: 0 0 8px rgba(255, 221, 0, 0.8), 2px 2px 4px rgba(0,0,0,0.5);
+            position: relative;
             display: inline-block;
-            background-color: #ffdd00;
-            color: #333;
-            font-weight: bold;
-            font-size: 1.3em;
-            padding: 10px 20px;
-            border-radius: 25px;
-            margin: 20px 0;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-            animation: pulse 2s ease-in-out infinite;
         }
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .remaining-count::before {
+            content: '⚡';
+            margin-right: 8px;
+            animation: flash 1.5s ease-in-out infinite;
+        }
+        
+        .remaining-count::after {
+            content: '⚡';
+            margin-left: 8px;
+            animation: flash 1.5s ease-in-out infinite 0.3s;
+        }
+        
+        @keyframes flash {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
 
         header h1 {
@@ -438,7 +447,7 @@
             <div class="container">
                 <h1>大矢知キッズカート<br>グランプリ 2025<br>開催！</h1>
                 <p class="catch-copy">ゲームの枠を超えて、笑顔と友情が走り出す！<br>子どもたちによる、本気の 1 対 1 レース</p>
-                <div class="remaining-count">【残り8名】</div>
+                <div class="remaining-count">残り参加枠 8名</div>
                 <a href="#join" class="cta-button">今すぐ参加する！</a>
             </div>
         </header>
