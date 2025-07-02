@@ -398,9 +398,9 @@
         /* カウントダウンの数字がズームイン・アウトするアニメーション */
         @keyframes countdown-pulse {
             0%   { transform: scale(0); opacity: 0; }
-            20%  { transform: scale(1.2); opacity: 1; }
-            80%  { transform: scale(1); opacity: 1; }
-            100% { transform: scale(0); opacity: 0; }
+            15%  { transform: scale(1.3); opacity: 1; }
+            85%  { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0; }
         }
 
         
@@ -562,6 +562,11 @@
                 // スクロールを一時的に禁止
                 body.style.overflow = 'hidden';
 
+                // カウントダウン要素を確実に表示
+                countdownEl.style.display = 'block';
+                countdownEl.style.transform = 'scale(0)';
+                countdownEl.style.opacity = '0';
+
                 const countdownSteps = [
                     { text: '3', duration: 900 },
                     { text: '2', duration: 900 },
@@ -574,7 +579,12 @@
                     if (currentIndex < countdownSteps.length) {
                         const step = countdownSteps[currentIndex];
                         countdownEl.textContent = step.text;
-                        countdownEl.style.animation = `countdown-pulse ${step.duration / 1000}s ease-in-out forwards`;
+                        
+                        // アニメーションをリセットしてから新しいアニメーションを適用
+                        countdownEl.style.animation = 'none';
+                        setTimeout(() => {
+                            countdownEl.style.animation = `countdown-pulse ${step.duration / 1000}s ease-in-out forwards`;
+                        }, 10);
                         
                         setTimeout(() => {
                             currentIndex++;
