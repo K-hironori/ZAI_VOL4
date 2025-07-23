@@ -440,6 +440,184 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Print Styles for A4 */
+        @media print {
+            @page {
+                size: A4;
+                margin: 15mm;
+            }
+            
+            body {
+                font-size: 12px;
+                line-height: 1.4;
+                background: none !important;
+                background-image: none !important;
+            }
+            
+            .container {
+                max-width: none;
+                padding: 0;
+            }
+            
+            /* Hide interactive elements */
+            #opening-animation,
+            .cta-button,
+            .remaining-count {
+                display: none !important;
+            }
+            
+            /* Adjust header */
+            header {
+                background: none !important;
+                color: #333 !important;
+                padding: 20px 0;
+                border-bottom: 2px solid #e82929;
+                page-break-inside: avoid;
+            }
+            
+            header h1 {
+                color: #e82929 !important;
+                font-size: 24px;
+                text-shadow: none;
+                margin-bottom: 10px;
+            }
+            
+            header .catch-copy {
+                color: #333 !important;
+                font-size: 14px;
+                text-shadow: none;
+            }
+            
+            /* Sections */
+            section {
+                padding: 20px 0;
+                background: none !important;
+                page-break-inside: avoid;
+            }
+            
+            section::after {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+                color: #e82929;
+                page-break-after: avoid;
+            }
+            
+            .section-title::after {
+                display: none;
+            }
+            
+            /* Cards */
+            .card {
+                border: 1px solid #ddd;
+                box-shadow: none;
+                margin-bottom: 15px;
+                padding: 15px;
+                page-break-inside: avoid;
+            }
+            
+            .card::before {
+                display: none;
+            }
+            
+            /* Features */
+            .features-list li {
+                background: none;
+                padding-left: 20px;
+                margin-bottom: 8px;
+                font-size: 12px;
+            }
+            
+            .features-list li::before {
+                content: '• ';
+                color: #e82929;
+                font-weight: bold;
+                margin-right: 5px;
+            }
+            
+            /* FAQ */
+            .faq-item {
+                page-break-inside: avoid;
+                margin-bottom: 10px;
+            }
+            
+            .faq-item summary {
+                background: none !important;
+                font-size: 13px;
+                padding: 8px 0;
+                color: #333;
+            }
+            
+            .faq-item summary::after {
+                display: none;
+            }
+            
+            .faq-answer {
+                padding: 5px 0 10px 15px;
+                font-size: 12px;
+            }
+            
+            /* Philosophy */
+            .philosophy {
+                background: none !important;
+                padding: 15px 0;
+            }
+            
+            .philosophy h3 {
+                font-size: 16px;
+            }
+            
+            .philosophy p {
+                font-size: 12px;
+            }
+            
+            /* Images */
+            img {
+                max-width: 100% !important;
+                height: auto;
+                page-break-inside: avoid;
+            }
+            
+            /* Footer */
+            footer {
+                background: none !important;
+                color: #333 !important;
+                padding: 15px 0;
+                border-top: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+            
+            footer::before {
+                display: none;
+            }
+            
+            footer p {
+                font-size: 11px;
+                margin: 5px 0;
+            }
+            
+            /* Join section adjustments */
+            .join-steps {
+                background: none !important;
+                border: 1px solid #ddd;
+                padding: 15px;
+            }
+            
+            /* Ensure proper page breaks */
+            h1, h2, h3 {
+                page-break-after: avoid;
+            }
+            
+            p, li {
+                page-break-inside: avoid;
+                orphans: 3;
+                widows: 3;
+            }
+        }
     </style>
 </head>
 <body>
